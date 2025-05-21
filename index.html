@@ -1,0 +1,137 @@
+<html>
+    <head>
+        <title>KnowBook</title>
+        <style>
+      input[type="text"], button {
+      padding: 8px;
+      font-size: 16px;
+      margin: 8px 0px;
+      width: 300px;
+      
+    }
+      #results {
+      display: none; /* hide by default */
+      border: 1px solid #ccc;
+      max-height: 200px;
+      overflow-y: auto;
+      width: 300px;
+      }
+    
+    .item {
+      padding: 8px;
+      cursor: pointer;
+    }
+    .item:hover, .item.active {
+      background-color: #f0f0f0;
+    }
+             
+        </style>
+    </head>
+    <body>
+       <center><img src="kb.png" width="400" alt="KnowBook - The Legacy Encylopedia"></center>
+       <link rel="icon" href="kb_logo.png" sizes="any" /> 
+       
+    <input type="text" id="searchBox" placeholder="What would you like to know today...">
+     <button id="searchBtn">Search</button>
+
+  <div id="results"></div>
+
+  <script>
+    const searchBox = document.getElementById('searchBox');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultsDiv = document.getElementById('results');
+
+    let items = [];  // will be loaded from JSON
+    let filteredItems = [];
+    let currentIndex = -1;
+
+    function redirectToLink(item) {
+      if (item && item.link) {
+        window.location.href = item.link;
+      } else {
+        alert("No link found for: " + (item?.name || searchBox.value));
+      }
+    }
+
+    function showFilteredResults(query) {
+      resultsDiv.innerHTML = '';
+      resultsDiv.style.display = 'none';
+      currentIndex = -1;
+
+      if (!query) return;
+
+      filteredItems = items
+        .filter(i => i.name.toLowerCase().includes(query.toLowerCase()))
+        .slice(0, 10);
+
+      if (filteredItems.length === 0) return;
+
+      resultsDiv.style.display = 'block';
+
+      filteredItems.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.className = "item";
+        div.textContent = item.name;
+
+        div.addEventListener('click', () => {
+          searchBox.value = item.name;
+          resultsDiv.innerHTML = "";
+          resultsDiv.style.display = 'none';
+          redirectToLink(item);
+        });
+
+        resultsDiv.appendChild(div);
+      });
+    }
+
+    function highlightItem(index) {
+      const items = resultsDiv.querySelectorAll('.item');
+      items.forEach(item => item.classList.remove('active'));
+      if (index >= 0 && index < items.length) {
+        items[index].classList.add('active');
+        items[index].scrollIntoView({ block: 'nearest' });
+      }
+    }
+
+    searchBox.addEventListener('keydown', (e) => {
+      const itemsEls = resultsDiv.querySelectorAll('.item');
+      if (e.key === 'ArrowDown') {
+        if (currentIndex < itemsEls.length - 1) currentIndex++;
+        highlightItem(currentIndex);
+        e.preventDefault();
+      } else if (e.key === 'ArrowUp') {
+        if (currentIndex > 0) currentIndex--;
+        highlightItem(currentIndex);
+        e.preventDefault();
+      } else if (e.key === 'Enter') {
+        if (currentIndex >= 0 && currentIndex < filteredItems.length) {
+          const selectedItem = filteredItems[currentIndex];
+          searchBox.value = selectedItem.name;
+          resultsDiv.innerHTML = '';
+          resultsDiv.style.display = 'none';
+          redirectToLink(selectedItem);
+        } else {
+          const match = items.find(i => i.name.toLowerCase() === searchBox.value.trim().toLowerCase());
+          redirectToLink(match);
+        }
+        e.preventDefault();
+      }
+    });
+
+    searchBox.addEventListener('input', () => {
+      showFilteredResults(searchBox.value.trim());
+    });
+
+    searchBtn.addEventListener('click', () => {
+      const match = items.find(i => i.name.toLowerCase() === searchBox.value.trim().toLowerCase());
+      redirectToLink(match);
+    });
+
+    // Load items from external JSON file
+    fetch('items.json')
+      .then(res => res.json())
+      .then(data => items = data)
+      .catch(err => console.error("Failed to load items:", err));
+  </script>      
+    </body>
+</html>
