@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <link rel="stylesheet" href="pagestyle.css">
+    </head>
+    <body>
+    <h1></h1><hr>
+    <p></p>
+    <h3></h3>
+    <h4></h4>
+    <div id="footer"></div>
+    <script>
+    fetch('footer.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('footer').innerHTML = data);
+    </script>     
+    <script src="pagescript.js"></script> 
+    </body>

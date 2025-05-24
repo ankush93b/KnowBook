@@ -1,47 +1,115 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>KnowBook</title>
-        <style>
-      input[type="text"], button {
-      padding: 8px;
-      font-size: 16px;
-      margin: 8px 0px;
-      width: 300px;
-      
+<head>
+  <title>KnowBook</title>
+  <link rel="icon" href="kb_logo.png" sizes="any" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
-      #results {
-      display: none; /* hide by default */
-      border: 1px solid #ccc;
-      max-height: 200px;
-      overflow-y: auto;
-      width: 300px;
-      }
-    
-    .item {
-      padding: 8px;
-      cursor: pointer;
-    }
-    .item:hover, .item.active {
-      background-color: #f0f0f0;
-    }
-             
-        </style>
-    </head>
-    <body>
-       <center><img src="kb.png" width="400" alt="KnowBook - The Legacy Encylopedia"></center>
-       <link rel="icon" href="kb_logo.png" sizes="any" /> 
-       
-    <input type="text" id="searchBox" placeholder="What would you like to know today...">
-     <button id="searchBtn">Search</button>
 
-  <div id="results"></div>
+    img {
+      margin-top: 30px;
+    }
+
+    .search-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
+
+    .searchWrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: fit-content;
+    }
+
+  #searchInput {
+  padding: 8px 8px 8px 20px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 2px solid grey; /* black border by default */
+  outline: none; /* remove default outline */
+  transition: border-color 0.3s ease; /* smooth transition */
+}
+
+  #searchBtn {
+  padding: 8px 16px;           /* a bit more horizontal padding for better shape */
+  font-size: 16px;
+  margin-left: 8px;
+  border: 2px solid grey;     /* black border */
+  border-radius: 25px;         /* round corners */
+  background-color: transparent;    /* optional: white background */
+  cursor: pointer;             /* pointer cursor on hover */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+  #results {
+  display: none;
+  position: absolute;
+  font-size: 15px;
+  top: calc(100% + 6px);  /* 6px space below input */
+  left: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-sizing: border-box;
+  text-align: left;
+  border-radius: 25px;
+  padding-left: 4px; /* add this */
+  padding-right: 4px; /* keep some padding on the right */
+  padding-top: 4px;
+  padding-bottom: 4px;  
+  
+}
+
+    .item {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 0;              /* start as rectangle (no rounding) */
+  transition: border-radius 0.3s ease, background-color 0.3s ease;
+}
+
+.item:hover,
+.item.active {
+  background-color: #f0f0f0;
+  border-radius: 25px;          /* round corners on hover/active */
+}
+    #searchInput:focus {
+  border-color: blue; /* blue border on focus */
+}
+#searchBtn:hover {
+  background-color: gainsboro;      invert colors on hover */
+  color: black;
+}
+  </style>
+</head>
+<body>
+
+  <img src="kb.png" width="400" alt="KnowBook - The Legacy Encyclopedia">
+
+  <div class="search-container">
+  <div class="input-results-wrapper" style="position: relative; width: 400px;">
+    <input type="text" id="searchInput" placeholder="What would you like to know today...">
+    <div id="results"></div>
+  </div>
+  <button id="searchBtn" style="margin-left: 8px; padding: 8px; font-size: 16px;">Know it</button>
+</div>
 
   <script>
-    const searchBox = document.getElementById('searchBox');
+    const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const resultsDiv = document.getElementById('results');
 
-    let items = [];  // will be loaded from JSON
+    let items = [];
     let filteredItems = [];
     let currentIndex = -1;
 
@@ -49,7 +117,7 @@
       if (item && item.link) {
         window.location.href = item.link;
       } else {
-        alert("No link found for: " + (item?.name || searchBox.value));
+        alert("No link found for: " + (item?.name || searchInput.value));
       }
     }
 
@@ -74,7 +142,7 @@
         div.textContent = item.name;
 
         div.addEventListener('click', () => {
-          searchBox.value = item.name;
+          searchInput.value = item.name;
           resultsDiv.innerHTML = "";
           resultsDiv.style.display = 'none';
           redirectToLink(item);
@@ -85,15 +153,19 @@
     }
 
     function highlightItem(index) {
-      const items = resultsDiv.querySelectorAll('.item');
-      items.forEach(item => item.classList.remove('active'));
-      if (index >= 0 && index < items.length) {
-        items[index].classList.add('active');
-        items[index].scrollIntoView({ block: 'nearest' });
+      const itemsEls = resultsDiv.querySelectorAll('.item');
+      itemsEls.forEach(item => item.classList.remove('active'));
+      if (index >= 0 && index < itemsEls.length) {
+        itemsEls[index].classList.add('active');
+        itemsEls[index].scrollIntoView({ block: 'nearest' });
       }
     }
 
-    searchBox.addEventListener('keydown', (e) => {
+    searchInput.addEventListener('input', () => {
+      showFilteredResults(searchInput.value.trim());
+    });
+
+    searchInput.addEventListener('keydown', (e) => {
       const itemsEls = resultsDiv.querySelectorAll('.item');
       if (e.key === 'ArrowDown') {
         if (currentIndex < itemsEls.length - 1) currentIndex++;
@@ -106,24 +178,20 @@
       } else if (e.key === 'Enter') {
         if (currentIndex >= 0 && currentIndex < filteredItems.length) {
           const selectedItem = filteredItems[currentIndex];
-          searchBox.value = selectedItem.name;
+          searchInput.value = selectedItem.name;
           resultsDiv.innerHTML = '';
           resultsDiv.style.display = 'none';
           redirectToLink(selectedItem);
         } else {
-          const match = items.find(i => i.name.toLowerCase() === searchBox.value.trim().toLowerCase());
+          const match = items.find(i => i.name.toLowerCase() === searchInput.value.trim().toLowerCase());
           redirectToLink(match);
         }
         e.preventDefault();
       }
     });
 
-    searchBox.addEventListener('input', () => {
-      showFilteredResults(searchBox.value.trim());
-    });
-
     searchBtn.addEventListener('click', () => {
-      const match = items.find(i => i.name.toLowerCase() === searchBox.value.trim().toLowerCase());
+      const match = items.find(i => i.name.toLowerCase() === searchInput.value.trim().toLowerCase());
       redirectToLink(match);
     });
 
@@ -132,6 +200,7 @@
       .then(res => res.json())
       .then(data => items = data)
       .catch(err => console.error("Failed to load items:", err));
-  </script>      
-    </body>
+  </script>
+
+</body>
 </html>
