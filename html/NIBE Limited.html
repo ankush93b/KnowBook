@@ -56,18 +56,19 @@
       text-decoration: underline;
     }
 
-    /* Toggle button for mobile */
+    /* Toggle button inside h1 */
+    .header-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .menu-toggle {
-      display: none;
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-      background-color: #333;
-      color: #fff;
-      padding: 10px;
+      background: none;
       border: none;
+      font-size: 24px;
       cursor: pointer;
+      display: none;
     }
 
     @media (max-width: 768px) {
@@ -90,14 +91,12 @@
       }
 
       .menu-toggle {
-        display: block;
+        display: inline;
       }
     }
   </style>
 </head>
 <body>
-  <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
-
   <div class="sidebar" id="sidebar">
     <h2>NIBE Limited</h2>
     <p>Indian defence technology company based in Maharashtra.</p>
@@ -110,7 +109,11 @@
   </div>
 
   <div class="main-content">
-    <h1>NIBE Limited</h1><hr>
+    <h1 class="header-bar">
+      <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
+      NIBE Limited
+    </h1>
+    <hr>
     <p><b>NIBE Limited</b> is an Indian defence technology company engaged in the development, manufacturing, and integration of defence systems based in Maharashtra, India.</p>
 
     <h3>Products</h3>
