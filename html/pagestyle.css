@@ -177,6 +177,12 @@ th, td {
   vertical-align: middle;
 
 }
+.imagecaption
+{
+  font-size: 12px;
+  text-align: center;
+  color: black;
+}
 
 td img {
   padding: 0;
@@ -318,13 +324,13 @@ td img {
 
 .title {
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   margin-bottom: 4px;
 }
 
 .value {
   font-weight: 400;
-  font-size: 13px;
+  font-size: 15px;
   color: #555;
   word-wrap: break-word;
 }
@@ -340,38 +346,71 @@ td img {
 
 
 
-.image-float {
-      float: right;
-      margin: 0 0 10px 20px;
-      border: 2px solid #ccc;
-      padding: 8px;
-      background-color: #f9f9f9;
-      text-align: center;
+.icon-trigger {
+      width: 22px;
+      
+      cursor: pointer;
       
     }
 
-    .image-float img {
-      width: 100%;
-      height: auto;
-      display: block;
+    .image-preview-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
     }
 
-    .caption {
-      margin-top: 8px;
-      font-size: 0.9rem;
-      color: #333;
+    .image-preview-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 80vh;
     }
 
-    .clear {
-      clear: both;
+    .image-preview-content img {
+      max-width: 300px;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    /* 🟦 Responsive: Stack image below paragraph on small screens */
+    .image-close-btn {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
     @media (max-width: 600px) {
-      .image-float {
-        float: none;
-        margin: 20px auto 0 auto;
-        width: 100%;
-        max-width: 400px;
+      .icon-trigger {
+        width: 22px;
+        
+      }
+
+      .image-preview-content {
+        max-width: 95vw;
+        max-height: 70vh;
+      }
+
+      .image-close-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
       }
     }

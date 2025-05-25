@@ -3,39 +3,104 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Image + Caption</title>
+  <title>Responsive Image Popup</title>
   <style>
-    .image-caption-wrapper {
-      display: inline-block;
-      text-align: center;
-      border: 2px solid #ccc;
-      padding: 8px;
-      background-color: #fff;
-      
+  /*  body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }*/
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
     }
 
-    .image-caption-wrapper img {
-      display: block;
+    .image-popup {
+      display: none;
+      position: relative;
+      margin-top: 20px;
+      max-width: 90vw;
+      max-height: 80vh;
+    }
+
+    .image-popup img {
+      width: 100%;
       height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    .caption {
-      margin-top: 8px;
-      font-size: 1rem;
-      word-wrap: break-word;
-      text-align: left;
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    @media (max-width: 600px) {
+      .icon {
+        width: 32px;
+        height: 32px;
+      }
+
+      .image-popup {
+        max-width: 95vw;
+        max-height: 70vh;
+      }
+
+      .image-popup img {
+        max-height: 70vh;
+      }
+
+      .close-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Example with image width set via inline style -->
-  <div class="image-caption-wrapper">
-    <img style="width: 300px;" src="html/images/ig.jpg" alt="Example" >
-    <div style="width: 300px;" class="caption">This caption matches the image width exactly, even when the width is set manually.</div>
+  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Open" class="icon" id="showImageBtn" />
+
+  <div class="image-popup" id="imagePopup">
+    <button class="close-btn" id="closeImageBtn">&times;</button>
+    <img src="html/images/ig.jpg" alt="Displayed Image" />
   </div>
 
-  
+  <script>
+    const showBtn = document.getElementById('showImageBtn');
+    const popup = document.getElementById('imagePopup');
+    const closeBtn = document.getElementById('closeImageBtn');
+
+    showBtn.addEventListener('click', () => {
+      popup.style.display = 'block';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+  </script>
 
 </body>
 </html>

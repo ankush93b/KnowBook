@@ -22,3 +22,20 @@ document.querySelectorAll('.popup-trigger').forEach(element => {
 document.addEventListener('click', () => {
   popup.style.display = 'none';
 });
+
+const previewOverlay = document.getElementById('imagePreviewOverlay');
+const previewImage = document.getElementById('previewImage');
+const closeBtn = document.getElementById('hideImageBtn');
+
+document.querySelectorAll('.icon-trigger').forEach(icon => {
+  icon.addEventListener('click', () => {
+    const imgSrc = icon.getAttribute('data-img');
+    previewImage.src = imgSrc;
+    previewOverlay.style.display = 'flex';
+  });
+});
+
+closeBtn.addEventListener('click', () => {
+  previewOverlay.style.display = 'none';
+  previewImage.src = '';
+});
