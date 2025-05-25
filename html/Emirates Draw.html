@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emirates Draw</title>
+    <link rel="stylesheet" href="pagestyle.css">
+    </head>
+    <body>
+    <h1>Emirates Draw</h1><hr>
+    <p>Emirates Draw is a global online lottery draw, operated and managed by Tychero with prizes up to AED 100 million.</p>
+    <p>The Emirates Draw had paused its UAE operations at the end of 2023 following new regulations introduced by the UAE’s Commercial Gaming Regulatory Authority (GCGRA).</p>
+    <h3>Winners</h3>
+    <p>In May 2025, Sriram Rajagopalan, a retired Indian engineer from Chennai, Tamil Nadu, India bagged one of the largest lottery prizes, bagging ₹225 crore (approx. $27 million, Dh100 million) in the Emirates Draw MEGA7 game.</p>
+    <h4></h4>
+    <div id="footer"></div>
+    <script>
+    fetch('footer.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('footer').innerHTML = data);
+    </script>     
+    <script src="pagescript.js"></script> 
+    </body>

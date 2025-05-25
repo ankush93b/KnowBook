@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lashkar-e-Taiba</title>
+    <link rel="stylesheet" href="pagestyle.css">
+    </head>
+    <body>
+    <h1>Lashkar-e-Taiba</h1><hr>
+    <p>The Lashkar-e-Taiba (also known as Jama'at-ud-Da'awa) is a terror group based in Muridke near Lahore in Pakistan and is headed by Hafiz Muhammad Saeed. It is formed in 1990 in the Kunar province of Afghanistan, the LeT's first presence in Jammu and Kashmir was recorded in 1993 when 12 Pakistani and Afghan terrorists infiltrated across the Line of Control (LoC) in tandem with the Islami Inquilabi Mahaz, a terrorist outfit then active in the Poonch district.</p>
+    <h3></h3>
+    <h4></h4>
+    <div id="footer"></div>
+    <script>
+    fetch('footer.html')
+        .then(res => res.text())
+        .then(data => document.getElementById('footer').innerHTML = data);
+    </script>     
+    <script src="pagescript.js"></script> 
+    </body>
