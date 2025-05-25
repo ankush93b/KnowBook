@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NIBE Limited</title>
+  <link rel="stylesheet" href="pagestyle.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+      border-right: 1px solid #ccc;
+      transition: transform 0.3s ease;
+    }
+
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .sidebar h2 {
+      font-size: 20px;
+      margin-top: 0;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    /* Toggle button for mobile */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        width: 220px;
+        height: 100%;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+        position: fixed;
+        z-index: 999;
+        background-color: #f2f2f2;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 20px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="menu-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+  <div class="sidebar" id="sidebar">
+    <h2>NIBE Limited</h2>
+    <p>Indian defence technology company based in Maharashtra.</p>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <h1>NIBE Limited</h1><hr>
+    <p><b>NIBE Limited</b> is an Indian defence technology company engaged in the development, manufacturing, and integration of defence systems based in Maharashtra, India.</p>
+
+    <h3>Products</h3>
+    <p>The company has two divisions: ‘Defence Structure’, which focuses on manufacturing mobile weapon systems, rocket launchers, modular bridges, and other components of defense equipment; and ‘Defence Electronics’, which specializes in embedded systems such as rugged dual-display consoles, network switches, Ethernet switches, and various related products.</p>
+
+    <div id="footer"></div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('open');
+    }
+
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
+  <script src="pagescript.js"></script>
+</body>
+</html>
