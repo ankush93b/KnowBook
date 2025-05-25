@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image + Caption</title>
+  <style>
+    .image-caption-wrapper {
+      display: inline-block;
+      text-align: center;
+      border: 2px solid #ccc;
+      padding: 8px;
+      background-color: #fff;
+      
+    }
+
+    .image-caption-wrapper img {
+      display: block;
+      height: auto;
+    }
+
+    .caption {
+      margin-top: 8px;
+      font-size: 1rem;
+      word-wrap: break-word;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Example with image width set via inline style -->
+  <div class="image-caption-wrapper">
+    <img style="width: 300px;" src="html/images/ig.jpg" alt="Example" >
+    <div style="width: 300px;" class="caption">This caption matches the image width exactly, even when the width is set manually.</div>
+  </div>
+
+  
+
+</body>
+</html>

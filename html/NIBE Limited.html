@@ -5,107 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>NIBE Limited</title>
   <link rel="stylesheet" href="pagestyle.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: row;
-      min-height: 100vh;
-    }
-
-    .sidebar {
-      width: 250px;
-      background-color: #f2f2f2;
-      padding: 20px;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow-y: auto;
-      border-right: 1px solid #ccc;
-      transition: transform 0.3s ease;
-    }
-
-    .main-content {
-      margin-left: 270px;
-      padding: 20px;
-      flex-grow: 1;
-    }
-
-    .sidebar h2 {
-      font-size: 20px;
-      margin-top: 0;
-    }
-
-    .sidebar ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .sidebar ul li {
-      margin: 10px 0;
-    }
-
-    .sidebar ul li a {
-      text-decoration: none;
-      color: #333;
-    }
-
-    .sidebar ul li a:hover {
-      text-decoration: underline;
-    }
-
-    /* Toggle button inside h1 */
-    .header-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .menu-toggle {
-      background: none;
-      border: none;
-      font-size: 24px;
-      cursor: pointer;
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        transform: translateX(-100%);
-        width: 220px;
-        height: 100%;
-      }
-
-      .sidebar.open {
-        transform: translateX(0);
-        position: fixed;
-        z-index: 999;
-        background-color: #f2f2f2;
-      }
-
-      .main-content {
-        margin-left: 0;
-        padding: 20px;
-      }
-
-      .menu-toggle {
-        display: inline;
-      }
-    }
-  </style>
+  
 </head>
 <body>
   <div class="sidebar" id="sidebar">
-    <h2>NIBE Limited</h2>
-    <p>Indian defence technology company based in Maharashtra.</p>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">About Us</a></li>
-      <li><a href="#">Products</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
+    <span class="close-btn" onclick="closeSidebar()">×</span>
+    <img id="sidelogo"  src="images/nibelogo.png" alt="">
+    <div class="imagecaption">Company Logo</div>
+   
+    <div class="info-list">
+    <div class="info-row">
+      <div class="title">Managing Director</div>
+      <div class="value"><a href="Ganesh Nibe.html">Ganesh Nibe</a></div>
+    </div>
+    <div class="info-row">
+      <div class="title">CEO, NIBE Group</div>
+      <div class="value">Ranjan Choudhary</div>
+    </div>
+    <div class="info-row">
+      <div class="title">CTO</div>
+      <div class="value">Balakrishnan Swamy</div>
+    </div>
+    <div class="info-row">
+      <div class="title">Company Secretary</div>
+      <div class="value">Komal Bhagat</div>
+    </div>
+    
+    <div class="info-row">
+      <div class="title">Traded on</div>
+      <div class="value">NSE BSE</div>
+    </div>
+    <div class="info-row">
+      <div class="title">Registered Office</div>
+      <div class="value">Plot No. E-2/2, Chakan Industrial Area, Phase III, Near Sara City, Kharabwadi, Taluka-Khed, Pune, Maharashtra – 410501, India</div>
+    </div>
+
+    <div class="info-row">
+      <div class="title">Office website</div>
+      <div class="value"><a href="https://www.nibelimited.com/" target="_blank" rel="noopener noreferrer">www.nibelimited.com</a></div>
+    </div>
+  </div>
+    
   </div>
 
   <div class="main-content">
@@ -114,19 +54,36 @@
       NIBE Limited
     </h1>
     <hr>
-    <p><b>NIBE Limited</b> is an Indian defence technology company engaged in the development, manufacturing, and integration of defence systems based in Maharashtra, India.</p>
+    <p><b>NIBE Limited</b> is an Indian defence technology company engaged in the development, manufacturing, and integration of defence systems based in Pune, Maharashtra, India.</p>
 
     <h3>Products</h3>
     <p>The company has two divisions: ‘Defence Structure’, which focuses on manufacturing mobile weapon systems, rocket launchers, modular bridges, and other components of defense equipment; and ‘Defence Electronics’, which specializes in embedded systems such as rugged dual-display consoles, network switches, Ethernet switches, and various related products.</p>
+    <h3>In-News</h3>
+    <h4>May 2025</h4>
+    <p>The company get an international order of worth ₹150.6 crore from Israel based OEM. This order is of manufacturing and supply of Universal Rocket Launchers with a range of up to 300 kilometres. </p>
 
     <div id="footer"></div>
   </div>
 
   <script>
+    const sidebar = document.getElementById('sidebar');
+
     function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
       sidebar.classList.toggle('open');
     }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+    }
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function (event) {
+      const isInsideSidebar = sidebar.contains(event.target);
+      const isMenuButton = event.target.classList.contains('menu-toggle');
+      if (!isInsideSidebar && !isMenuButton && sidebar.classList.contains('open')) {
+        closeSidebar();
+      }
+    });
 
     fetch('footer.html')
       .then(res => res.text())
