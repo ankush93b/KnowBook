@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>KnowBook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="kb_logo.png" sizes="any" />
   <style>
     body {
@@ -48,7 +49,7 @@
   cursor: pointer;             /* pointer cursor on hover */
   transition: background-color 0.3s ease, color 0.3s ease;
   color: rgba(59,122,167,254);
-  font-weight: 550;
+  
   
 }
 
@@ -101,7 +102,7 @@
   <img src="kb.png" width="400" alt="KnowBook - The Legacy Encyclopedia">
 
   <div class="search-container">
-  <div class="input-results-wrapper" style="position: relative; width: 400px;">
+  <div class="input-results-wrapper" style="position: relative; width: 100%; max-width: 400px; padding: 0 10px;">
     <input type="text" id="searchInput" placeholder="What would you like to know today...">
     <div id="results"></div>
   </div>
