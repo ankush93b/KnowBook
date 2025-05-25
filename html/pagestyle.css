@@ -56,7 +56,7 @@
 
     /* Paragraph text */
     p {
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: black; /* medium blue, softer */
       margin-bottom: 1em;
     }
@@ -130,4 +130,52 @@ a:hover {
   display: inline;
   vertical-align: middle;
 }
+.table-container {
+      overflow-x: auto; /* Allows horizontal scroll on mobile */
+      padding: 10px;
+    }
+
+    table {
+      width: auto;
+      border-collapse: collapse;
+      min-width: 400px; /* Prevent table from collapsing too small */
+      border: 3px solid rgba(100,150,137,253);
+      border-radius: 16px; /* Rounded corners */
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 5px;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap; /* Keeps content in one line unless broken manually */
+      border: 2px solid rgba(59,122,167,254);
+    }
+
+    img {
+  max-width: 100px;
+  max-height: 100px;
+  display: block;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  vertical-align: middle;
+}
+td img {
+  padding: 0;
+  margin: 0 auto;
+  display: block;
+}
+
+    @media (max-width: 600px) {
+      th, td {
+        padding: 4px;
+        font-size: 14px;
+      }
+
+      img {
+        max-width: 70px;
+        max-height: 70px;
+      }
+    }
   

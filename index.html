@@ -2,7 +2,6 @@
 <html>
 <head>
   <title>KnowBook</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="kb_logo.png" sizes="any" />
   <style>
     body {
@@ -15,13 +14,11 @@
     }
 
     .search-container {
-  display: flex;
-  flex-wrap: wrap;               /* allow wrapping on small screens */
-  justify-content: center;
-  align-items: center;
-  margin-top: 30px;
-                      /* optional: better spacing between elements */
-}
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 30px;
+    }
 
     .searchWrapper {
       position: relative;
@@ -45,18 +42,20 @@
   padding: 8px 16px;           /* a bit more horizontal padding for better shape */
   font-size: 16px;
   margin-left: 8px;
-  white-space: nowrap;             /* prevents text wrap */
-  flex-shrink: 0;
   border: 2px solid rgba(100,150,137,253);     /* black border */
   border-radius: 25px;         /* round corners */
   background-color: transparent;    /* optional: white background */
   cursor: pointer;             /* pointer cursor on hover */
   transition: background-color 0.3s ease, color 0.3s ease;
   color: rgba(59,122,167,254);
-
+  outline: none;
   
   
 }
+  #searchBtn:focus {
+    outline: none;
+    box-shadow: none;
+  }
 
   #results {
   display: none;
@@ -104,10 +103,17 @@
 </head>
 <body>
 
-  <img src="kb.png" width="400" alt="KnowBook - The Legacy Encyclopedia">
+  <img 
+  src="kb.png" 
+  width="400" 
+  alt="KnowBook" 
+  draggable="false" 
+  oncontextmenu="return false;" 
+  style="user-select: none; -webkit-user-drag: none;"
+>
 
   <div class="search-container">
-  <div class="input-results-wrapper" style="position: relative; width: 100%; max-width: 400px; padding: 0 10px;">
+  <div class="input-results-wrapper" style="position: relative; width: 400px;">
     <input type="text" id="searchInput" placeholder="What would you like to know today...">
     <div id="results"></div>
   </div>
