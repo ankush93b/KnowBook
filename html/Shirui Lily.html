@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shirui Lily</title><!--1. Enter tile-->
+  <link rel="stylesheet" href="pagestyle.css">
+  
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" onclick="closeSidebar()">×</span>
+    <img id="sidelogo" src=""><!--add logo OR-->
+    <img id="profilepic" src="images/SL.png"><!--add profile pic-->
+    <div class="imagecaption"></div><!--give caption-->
+   
+    <div class="info-list">
+    <div class="info-row">
+      <div class="title">Botanical Name</div><!--add in side bar title-->
+      <div class="value">Lilium Mackliniae</div><!--add in side bar value-->
+    </div>    
+    <div class="info-row">
+      <div class="title">Discovery</div><!--add in side bar title-->
+      <div class="value">In: 1946 <br>By: Dr. Frank Kingdon Ward</div><!--add in side bar value-->
+    </div> 
+    </div>    
+  </div>   
+  
+
+  <div class="main-content">
+    <h1 class="header-bar">
+      <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>Shirui Lily</h1><!--add main header-->
+    <hr>
+    <p><b>Shirui Lily</b> is a rare and endangered pinkish-white flower only found in the Shirui Hills in Ukhrul district of Imphal.</p><!--add first para-->
+    <p>The flower was discovered by British botanist Dr. Frank Kingdon Ward in 1946. The scientific name of flower Lilium Mackliniae was named after his wife Jean Macklin. The Shirui Lily gained international recognition when the Royal Horticultural Society awarded it a prestigious merit at its London Flower Show in 1950.</p>
+    <p>To commemorate the discovery of flower, Department of Tourism, Imphal organises a festival called Shirui Lily Festival in Ukhrul district.</p>
+
+    <h3>Blossoms Season</h3>
+    <p>These lilies flowering season spans from April to June, when it grows about a foot tall.</p>
+    
+    <h4></h4>
+                                       <!--Page contents ends here-->
+
+    <div id="footer"></div>
+  </div>
+
+  <script>
+    const sidebar = document.getElementById('sidebar');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('open');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+    }
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', function (event) {
+      const isInsideSidebar = sidebar.contains(event.target);
+      const isMenuButton = event.target.classList.contains('menu-toggle');
+      if (!isInsideSidebar && !isMenuButton && sidebar.classList.contains('open')) {
+        closeSidebar();
+      }
+    });
+
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
+  <script src="pagescript.js"></script>
+</body>
+</html>

@@ -344,7 +344,7 @@ td img {
   text-decoration: underline;
 }
 
-
+/* ADD IMAGE STYLES*/
 
 .icon-trigger {
       width: 22px;
@@ -414,3 +414,19 @@ td img {
         font-size: 18px;
       }
     }
+    .image-caption {
+      max-width: 300px;
+  margin-top: 5px;
+  margin-left: 7px;
+  font-size: 14px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.85); /* soft white */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* add soft glow for contrast */
+  font-style: italic;
+}
+.image-caption::before {
+  content: "📌 ";
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0px;
+}

@@ -62,33 +62,8 @@
     <h4>May 2025</h4>
     <p>The company get an international order of worth ₹150.6 crore from Israel based OEM. This order is of manufacturing and supply of Universal Rocket Launchers with a range of up to 300 kilometres. </p>
 
-    <div id="footer"></div>
-  </div>
-
-  <script>
-    const sidebar = document.getElementById('sidebar');
-
-    function toggleSidebar() {
-      sidebar.classList.toggle('open');
-    }
-
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-    }
-
-    // Close sidebar when clicking outside
-    document.addEventListener('click', function (event) {
-      const isInsideSidebar = sidebar.contains(event.target);
-      const isMenuButton = event.target.classList.contains('menu-toggle');
-      if (!isInsideSidebar && !isMenuButton && sidebar.classList.contains('open')) {
-        closeSidebar();
-      }
-    });
-
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('footer').innerHTML = data);
-  </script>
-  <script src="pagescript.js"></script>
+<div id="footer"></div>
+</div>
+<script src="pagescript.js"></script>
 </body>
 </html>

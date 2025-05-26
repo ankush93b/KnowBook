@@ -12,14 +12,14 @@
     <span class="close-btn" onclick="closeSidebar()">×</span>
     <img id="sidelogo" src=""><!--add logo OR-->
     <img id="profilepic" src=""><!--add profile pic-->
-    <div class="imagecaption"></div><!--give caption-->
+      <div class="imagecaption"></div><!--give caption-->
    
-    <div class="info-list">
-    <div class="info-row">
-      <div class="title">Nothing Here</div><!--add in side bar title-->
-      <div class="value"></div><!--add in side bar value-->
-    </div>    
-    </div>    
+      <div class="info-list">
+        <div class="info-row">
+          <div class="title">Nothing Here</div><!--add in side bar title-->
+          <div class="value"></div><!--add in side bar value-->
+        </div> 
+      </div>      
   </div>   
   
 
@@ -34,33 +34,8 @@
     <h4></h4>
                                        <!--Page contents ends here-->
 
-    <div id="footer"></div>
-  </div>
-
-  <script>
-    const sidebar = document.getElementById('sidebar');
-
-    function toggleSidebar() {
-      sidebar.classList.toggle('open');
-    }
-
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-    }
-
-    // Close sidebar when clicking outside
-    document.addEventListener('click', function (event) {
-      const isInsideSidebar = sidebar.contains(event.target);
-      const isMenuButton = event.target.classList.contains('menu-toggle');
-      if (!isInsideSidebar && !isMenuButton && sidebar.classList.contains('open')) {
-        closeSidebar();
-      }
-    });
-
-    fetch('footer.html')
-      .then(res => res.text())
-      .then(data => document.getElementById('footer').innerHTML = data);
-  </script>
-  <script src="pagescript.js"></script>
+<div id="footer"></div>
+</div>  
+<script src="pagescript.js"></script>
 </body>
 </html>

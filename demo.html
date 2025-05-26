@@ -1,47 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Responsive Image Popup</title>
-  <style>
-  /*  body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      overflow-x: hidden;
-    }*/
-
-    .icon {
-      width: 40px;
-      height: 40px;
+<html>
+  <head>
+    <title></title>
+    <style>
+      .icon-trigger {
+      width: 22px;
+      
       cursor: pointer;
+      
     }
 
-    .image-popup {
+    .image-preview-overlay {
       display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .image-preview-content {
       position: relative;
-      margin-top: 20px;
       max-width: 90vw;
       max-height: 80vh;
     }
 
-    .image-popup img {
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
+    .image-preview-content img {
+      max-width: 300px;
+      max-height: 100%;
       object-fit: contain;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
-    .close-btn {
+    .image-close-btn {
       position: absolute;
-      top: 10px;
-      right: 10px;
+      top: -15px;
+      right: -15px;
       background-color: #000;
       color: white;
       border: none;
@@ -57,50 +54,54 @@
     }
 
     @media (max-width: 600px) {
-      .icon {
-        width: 32px;
-        height: 32px;
+      .icon-trigger {
+        width: 22px;
+        
       }
 
-      .image-popup {
+      .image-preview-content {
         max-width: 95vw;
         max-height: 70vh;
       }
 
-      .image-popup img {
-        max-height: 70vh;
-      }
-
-      .close-btn {
+      .image-close-btn {
         width: 30px;
         height: 30px;
         font-size: 18px;
       }
     }
-  </style>
-</head>
-<body>
+    </style>
+  </head>
+  <body>
+    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png"
+       class="icon-trigger"
+       data-img="https://placekitten.com/800/600"
+       alt="Image 1" /> 
 
-  <img src="https://cdn-icons-png.flaticon.com/512/1828/1828817.png" alt="Open" class="icon" id="showImageBtn" />
-
-  <div class="image-popup" id="imagePopup">
-    <button class="close-btn" id="closeImageBtn">&times;</button>
-    <img src="html/images/ig.jpg" alt="Displayed Image" />
+  <!-- Overlay preview -->
+  <div class="image-preview-overlay" id="imagePreviewOverlay">
+    <div class="image-preview-content">
+      <button class="image-close-btn" id="hideImageBtn">&times;</button>
+      <img src="" alt="Preview" id="previewImage" />
+    </div>
   </div>
-
   <script>
-    const showBtn = document.getElementById('showImageBtn');
-    const popup = document.getElementById('imagePopup');
-    const closeBtn = document.getElementById('closeImageBtn');
+    const previewOverlay = document.getElementById('imagePreviewOverlay');
+const previewImage = document.getElementById('previewImage');
+const closeBtn = document.getElementById('hideImageBtn');
 
-    showBtn.addEventListener('click', () => {
-      popup.style.display = 'block';
-    });
+document.querySelectorAll('.icon-trigger').forEach(icon => {
+  icon.addEventListener('click', () => {
+    const imgSrc = icon.getAttribute('data-img');
+    previewImage.src = imgSrc;
+    previewOverlay.style.display = 'flex';
+  });
+});
 
-    closeBtn.addEventListener('click', () => {
-      popup.style.display = 'none';
-    });
+closeBtn.addEventListener('click', () => {
+  previewOverlay.style.display = 'none';
+  previewImage.src = '';
+});
   </script>
-
-</body>
+  </body>
 </html>
