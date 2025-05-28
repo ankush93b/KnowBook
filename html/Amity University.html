@@ -1,0 +1,79 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amity University</title>                                       <!--1. Enter tile-->
+    <link rel="icon" href="../kb_logo.png" sizes="any" />
+    <link rel="stylesheet" href="pagestyle.css">    
+  </head>
+  <body>
+    <div class="sidebar" id="sidebar">
+      <span class="close-btn" onclick="closeSidebar()">×</span>
+      <img id="sidelogo" src="">                                <!--add logo OR-->
+      <img id="profilepic" src="">                              <!--add profile pic-->
+        <div class="imagecaption"></div>                        <!--give caption-->
+    
+        <div class="info-list">
+          <div class="info-row">
+            <div class="title">Nothing Here</div>               <!--add in side bar title-->
+            <div class="value"></div>                           <!--add in side bar value-->
+          </div> 
+        </div>      
+    </div>   
+    
+    <div class="main-content">
+      <div class="header-bar">
+      <button class="menu-toggle" onclick="toggleSidebar()">&#9776;</button>
+      <h1>Amity University</h1>                                                  <!--add main header-->
+      </div>
+      
+      <hr> 
+     
+      <input type="text" id="imageSearch" placeholder="Search images..."/>
+     
+      <div id="collage"></div>
+
+      <div id="zoomModal">    
+      <div class="zoom-image-wrapper">
+        <div class="zoom-image-container">
+          <img id="zoomedImage" src="" alt="Zoomed View" />        
+            <div class="button-group">
+              <button class="side-btn" title="Close" id="closeBtn">×</button>
+              <button class="side-btn" title="Zoom In" id="zoomInBtn">+</button>
+              <button class="side-btn" title="Zoom Out" id="zoomOutBtn">−</button>
+              <button class="side-btn" title="Reset Zoom" id="resetZoomBtn">⟳</button>
+              <div id="tag-btn-wrapper">
+              <button class="side-btn" title="Tags" id="tagBtn">!</button> 
+              <div class="keywords" id="keywords"></div>
+            </div>                 
+         </div>           
+      </div>
+      <div id="zoomCaption"></div>
+    </div>
+  </div>
+  <script>
+    // You can now add images manually below:
+    const images = [
+      { src: "images/5.png", 
+      caption: "The Time of India - P. 5 - May 27 2025",
+      searchQuery:"amity university bca bacholar of computer application" } //enter search query words.      
+      
+    ];
+    const tagBtn = document.getElementById('tagBtn');
+      const keywordsDiv = document.querySelector('.keywords');
+      tagBtn.addEventListener('click', () => {
+      if (keywordsDiv.style.display === 'block') {
+        keywordsDiv.style.display = 'none';
+      } else {
+        //CHANGE IMAGE NAME WITH WHICH TAG TO BE ADDED.
+        if(currentZoomedImage.getAttribute('src') === "images/5.png"){  
+        document.getElementById("keywords").innerHTML=``;} //ADD TAGS AND LINKS
+                
+        keywordsDiv.style.display = 'block';
+      }
+    });
+  </script>
+  <script src="pagescript.js"></script>
+  </body>
+  </html>
