@@ -210,7 +210,7 @@ imageSearch.addEventListener('input', () => {
 }
 
 
-
 // Run on load and resize
 window.addEventListener('load', adjustButtonsForMobile);
 window.addEventListener('resize', adjustButtonsForMobile);
+

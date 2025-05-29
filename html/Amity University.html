@@ -54,7 +54,10 @@
   </div>
   <script>
     // You can now add images manually below:
+    
     const images = [
+
+      //ADD IMAGE
       { src: "images/5.png", 
       caption: "The Time of India - P. 5 - May 27 2025",
       searchQuery:"amity university bca bacholar of computer application" } //enter search query words.      
@@ -66,9 +69,9 @@
       if (keywordsDiv.style.display === 'block') {
         keywordsDiv.style.display = 'none';
       } else {
-        //CHANGE IMAGE NAME WITH WHICH TAG TO BE ADDED.
+        //ADD TAG
         if(currentZoomedImage.getAttribute('src') === "images/5.png"){  
-        document.getElementById("keywords").innerHTML=``;} //ADD TAGS AND LINKS
+        document.getElementById("keywords").innerHTML=`<div><a href="Advertisements.html">Advertisements</a></div>`;} //ADD TAGS AND LINKS
                 
         keywordsDiv.style.display = 'block';
       }

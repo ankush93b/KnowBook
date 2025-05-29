@@ -2,7 +2,7 @@
   <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, user-scalable=yes" />
     <title></title>                                       <!--1. Enter tile-->
     <link rel="icon" href="../kb_logo.png" sizes="any" />
     <link rel="stylesheet" href="pagestyle.css">
@@ -31,7 +31,13 @@
       
       <hr> 
      
-      <input type="text" id="imageSearch" placeholder="Search images..."/>
+      
+      <div class="search-wrapper">
+      <input type="text" id="imageSearch" placeholder="Search news headlines..."/>
+      <a href="../index.html" class="home-icon" title="Go to Home">
+      <img src="images/home.png" alt="Home">
+      </a>
+      </div>
      
       <div id="collage"></div>
 
@@ -56,6 +62,7 @@
   <script>
     // You can now add images manually below:
     const images = [
+      //ADD IMAGE
       { src: "", 
       caption: "",
       searchQuery:""}     
@@ -67,10 +74,8 @@
       if (keywordsDiv.style.display === 'block') {
         keywordsDiv.style.display = 'none';
       } else {
-        //CHANGE IMAGE NAME WITH WHICH TAG TO BE ADDED.
-        if(currentZoomedImage.getAttribute('src') === "images/6.png"){  
-        document.getElementById("keywords").innerHTML=`<div><a href=""></a></div>`;} //ADD TAGS AND LINKS
-                
+        //ADD TAG
+                        
         keywordsDiv.style.display = 'block';
       }
     });

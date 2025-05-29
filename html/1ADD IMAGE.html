@@ -1,0 +1,35 @@
+<!-- form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Page Data</title>
+</head>
+<body>
+  <h2>Enter Data for the Page</h2>
+  <form id="dataForm">
+    <input name="data1" placeholder="image name only " required /><br />
+    <input name="data2" placeholder="caption " required /><br />
+    <input name="data3" placeholder="searchQuery " required /><br />
+    <input name="files" placeholder="file names with .html seperated with comma" required /><br />
+    
+    <button type="submit">Update HTML Page</button>
+  </form>
+
+  <script>
+    document.getElementById('dataForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const json = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/update-pages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json),
+      });
+
+      const result = await res.text();
+      alert(result);
+    };
+  </script>
+</body>
+</html>
