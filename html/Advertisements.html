@@ -57,6 +57,11 @@
     // You can now add images manually below:
     const images = [
       //ADD IMAGE
+{ src: "images/34.png", caption: "The Time of India - P. 5 - June 09 2025", searchQuery: "sharda university placements programmes courses" },
+{ src: "images/32.png", caption: "The Time of India - P. 3 - June 09 2025", searchQuery: "amity international school" },
+{ src: "images/27.png", caption: "The Time of India - P. 2 - May 27 2025", searchQuery: "galgotias university programmmes courses" },
+{ src: "images/26.png", caption: "The Time of India - P. 1 - June 09 2025", searchQuery: "punjab national bank pnb interest rate reduction " },
+{ src: "images/25.png", caption: "The Time of India - P. 1 - June 09 2025", searchQuery: "amrita hospital amrita vishwa vidyapeetham" },
 { src: "images/12.png", caption: "The Time of India - P. 5 - May 27 2025", searchQuery: "delhi polluction control committee alternative to single use plastic" },
     
       { src: "images/5.png", 
@@ -75,6 +80,42 @@
         keywordsDiv.style.display = 'none';
       } else {
         //ADD TAG
+if(currentZoomedImage.getAttribute('src') === "images/34.png"){  
+        document.getElementById("keywords").innerHTML=`
+        <div><a href="Sharda University.html">Sharda University</a></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>`}
+if(currentZoomedImage.getAttribute('src') === "images/27.png"){  
+        document.getElementById("keywords").innerHTML=`
+        <div><a href="Galgotias University.html">Galgotias University</a></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>`}
+if(currentZoomedImage.getAttribute('src') === "images/26.png"){  
+        document.getElementById("keywords").innerHTML=`
+        <div><a href="Punjab National Bank.html">PNB</a></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>`}
+if(currentZoomedImage.getAttribute('src') === "images/25.png"){  
+        document.getElementById("keywords").innerHTML=`
+        <div><a href="Amrita Hospital.html">Amrita Hospital</a></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>`}
     if(currentZoomedImage.getAttribute('src') === "images/12.png"){  
         document.getElementById("keywords").innerHTML=`
         <div><a href="Delhi Pollution Control Committee.html">DPCC</a></div>

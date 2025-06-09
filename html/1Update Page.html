@@ -1,0 +1,63 @@
+<!-- form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Page </title>
+</head>
+<body>
+  <h1>Add Image</h1>
+  <form id="dataForm1" action="/add-image">
+    <input name="data1" placeholder="image name only " required /><br />
+    <input name="data2" placeholder="caption " required /><br />
+    <input name="data3" placeholder="searchQuery " required /><br />
+    <input name="files" placeholder="file names with .html seperated with comma" required /><br />
+    
+    <button type="submit">Add Image</button>
+  </form>
+  <h1>Add Tag</h1>
+  <form id="dataForm2" action="/add-tag">
+    <input name="data8" placeholder="Image name only with extension "  /><br />
+    <input name="files" placeholder="file name without html"  /><br />
+    <input name="data1" placeholder="TAG page without html "  /><input name="data9" placeholder="TAG name "  /><br />
+    <input name="data2" placeholder="TAG page without html "  /><input name="data10" placeholder="TAG name "  /><br />
+    <input name="data3" placeholder="TAG page without html"  /><input name="data11" placeholder="TAG name "  /><br />
+    <input name="data4" placeholder="TAG page without html"  /><input name="data12" placeholder="TAG name "  /><br />
+    <input name="data5" placeholder="TAG page without html"  /><input name="data13" placeholder="TAG name "  /><br />
+    <input name="data6" placeholder="TAG page without html"  /><input name="data14" placeholder="TAG name "  /><br />
+    <input name="data7" placeholder="TAG page without html"  /><input name="data15" placeholder="TAG name "  /><br />
+       
+    <button type="submit">Update HTML Page</button>
+  </form>
+
+  <script>
+    document.getElementById('dataForm1').onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const json = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/add-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json),
+      });
+
+      const result = await res.text();
+      alert(result);
+    };
+    document.getElementById('dataForm2').onsubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const json = Object.fromEntries(formData.entries());
+
+      const res = await fetch('/add-tag', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(json),
+      });
+
+      const result = await res.text();
+      alert(result);
+    };
+  </script>
+</body>
+</html>
